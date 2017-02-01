@@ -1,0 +1,1 @@
+{"relationships": [{"target_name": "host", "target_id": "host_5tga9x", "type": "cloudify.relationships.contained_in"}], "name": "http_web_server", "runtime_properties": {"pid": 4300}, "state": "deleted", "node_id": "http_web_server", "version": 12, "host_id": "host_5tga9x", "id": "http_web_server_ig6olk"}

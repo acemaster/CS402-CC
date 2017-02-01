@@ -1,0 +1,118 @@
+<wsdl:definitions xmlns:plink="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap11enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding" xmlns:soap12env="http://www.w3.org/2003/05/soap-envelope" xmlns:tns="CS402.CC.assign1.calc" xmlns:wsa="http://schemas.xmlsoap.org/ws/2003/03/addressing" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xop="http://www.w3.org/2004/08/xop/include" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="CS402.CC.assign1.calc" name="Application">
+<wsdl:types>
+<xs:schema targetNamespace="CS402.CC.assign1.calc" elementFormDefault="qualified">
+<xs:complexType name="stringArray">
+<xs:sequence>
+<xs:element name="string" type="xs:string" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="add">
+<xs:sequence>
+<xs:element name="num1" type="xs:integer" minOccurs="0" nillable="true"/>
+<xs:element name="num2" type="xs:integer" minOccurs="0" nillable="true"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="addResponse">
+<xs:sequence>
+<xs:element name="addResult" type="tns:stringArray" minOccurs="0" nillable="true"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="divide">
+<xs:sequence>
+<xs:element name="num1" type="xs:integer" minOccurs="0" nillable="true"/>
+<xs:element name="num2" type="xs:integer" minOccurs="0" nillable="true"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="divideResponse">
+<xs:sequence>
+<xs:element name="divideResult" type="tns:stringArray" minOccurs="0" nillable="true"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="multiply">
+<xs:sequence>
+<xs:element name="num1" type="xs:integer" minOccurs="0" nillable="true"/>
+<xs:element name="num2" type="xs:integer" minOccurs="0" nillable="true"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="multiplyResponse">
+<xs:sequence>
+<xs:element name="multiplyResult" type="tns:stringArray" minOccurs="0" nillable="true"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="stringArray" type="tns:stringArray"/>
+<xs:element name="add" type="tns:add"/>
+<xs:element name="addResponse" type="tns:addResponse"/>
+<xs:element name="divide" type="tns:divide"/>
+<xs:element name="divideResponse" type="tns:divideResponse"/>
+<xs:element name="multiply" type="tns:multiply"/>
+<xs:element name="multiplyResponse" type="tns:multiplyResponse"/>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="multiply">
+<wsdl:part name="multiply" element="tns:multiply"/>
+</wsdl:message>
+<wsdl:message name="multiplyResponse">
+<wsdl:part name="multiplyResponse" element="tns:multiplyResponse"/>
+</wsdl:message>
+<wsdl:message name="add">
+<wsdl:part name="add" element="tns:add"/>
+</wsdl:message>
+<wsdl:message name="addResponse">
+<wsdl:part name="addResponse" element="tns:addResponse"/>
+</wsdl:message>
+<wsdl:message name="divide">
+<wsdl:part name="divide" element="tns:divide"/>
+</wsdl:message>
+<wsdl:message name="divideResponse">
+<wsdl:part name="divideResponse" element="tns:divideResponse"/>
+</wsdl:message>
+<wsdl:service name="CalculateService">
+<wsdl:port name="Application" binding="tns:Application">
+<soap:address location="http://localhost:8000/"/>
+</wsdl:port>
+</wsdl:service>
+<wsdl:portType name="Application">
+<wsdl:operation name="multiply" parameterOrder="multiply">
+<wsdl:input name="multiply" message="tns:multiply"/>
+<wsdl:output name="multiplyResponse" message="tns:multiplyResponse"/>
+</wsdl:operation>
+<wsdl:operation name="add" parameterOrder="add">
+<wsdl:input name="add" message="tns:add"/>
+<wsdl:output name="addResponse" message="tns:addResponse"/>
+</wsdl:operation>
+<wsdl:operation name="divide" parameterOrder="divide">
+<wsdl:input name="divide" message="tns:divide"/>
+<wsdl:output name="divideResponse" message="tns:divideResponse"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="Application" type="tns:Application">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="multiply">
+<soap:operation soapAction="multiply" style="document"/>
+<wsdl:input name="multiply">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="multiplyResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="add">
+<soap:operation soapAction="add" style="document"/>
+<wsdl:input name="add">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="addResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="divide">
+<soap:operation soapAction="divide" style="document"/>
+<wsdl:input name="divide">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="divideResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+</wsdl:definitions>
